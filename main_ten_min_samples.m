@@ -1,7 +1,7 @@
 %% Ten minute turbulence vs C spatial and temporal variation
 clc; clear; close all
 
-load('S100882A003_LakeK_Sig2_31.mat')
+load('data/S100882A003_LakeK_Sig2_31.mat')
 % grab a ten minute burst (8 Hz shots * 512 shots/10min burst = 4096 rows)
 n = 4096;
 bottom_bin = 72;
@@ -49,7 +49,8 @@ end
 
 % initial timeseries
 surface(time, depth, amp_dB', 'EdgeColor','None');
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 xlabel('time')
 ylabel('depth, m')
 title('amplitude')
@@ -58,7 +59,8 @@ saveas(gcf,[dir '/initial_ts.jpg']);
 
 figure()
 surface(time, depth, w_despiked', 'EdgeColor','None');
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 xlabel('time')
 ylabel('depth, m')
 title('vertical velocity, m/s')
@@ -157,7 +159,8 @@ figure()
 surface(time_avg, depth(1:lakebed), final_cal_conc(:,1:lakebed)','EdgeColor','None');
 colorbar; caxis([0 .2])
 title('Final Normalized Concentration')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 xlim([min(time_avg),max(time_avg)]);
 xlabel('time')
 ylabel('depth, m')
@@ -167,7 +170,8 @@ figure()
 surface(time_avg, depth(1:lakebed), final_cor_amp(:,1:lakebed)','EdgeColor','None');
 colorbar; caxis([0 10])
 title('Final Corrected Amplitude (-C dB)')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 xlim([min(time_avg),max(time_avg)]);
 xlabel('time')
 ylabel('depth, m')
@@ -184,7 +188,8 @@ end
 
 figure()
 surface(time_avg, depth(1:lakebed), k_w(:,1:lakebed)', 'EdgeColor','None');
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 title('Vertical TKE, m^2/s^2')
 xlabel('time')
 ylabel('depth, m')
@@ -203,7 +208,8 @@ yyaxis right
 plot(time_avg, y);
 ylabel('normalized conc');
 xlabel('time');
-datetick('x');
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 title(['Timeseries at z = ' num2str(depth(bin)) 'm']);
 saveas(gcf,[dir '/ts.jpg']);
 
@@ -239,7 +245,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, -U(:,1))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 1')
 saveas(gcf,[dir '/conc_pattern1.jpg']);
@@ -255,7 +262,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, U(:,2))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 2')
 saveas(gcf,[dir '/conc_pattern2.jpg']);
@@ -271,7 +279,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, U(:,3))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 3')
 saveas(gcf,[dir '/conc_pattern3.jpg']);
@@ -300,7 +309,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, -U(:,1))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 1')
 saveas(gcf,[dir '/tau_pattern1.jpg']);
@@ -316,7 +326,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, U(:,2))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 2')
 saveas(gcf,[dir '/tau_pattern2.jpg']);
@@ -332,7 +343,8 @@ axis([0 3 -.2 .2])
 subplot(2,1,2)
 plot(time_avg, U(:,3))
 xlabel('time')
-datetick('x')
+datetick('x',13,'keepticks')
+dynamicDateTicks()
 ylabel('temporal weight')
 title('PC 3')
 saveas(gcf,[dir '/tau_pattern3.jpg']);
